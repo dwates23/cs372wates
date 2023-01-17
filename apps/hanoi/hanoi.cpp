@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 using namespace std;
+auto start = chrono::steady_clock::now();
 
 void moveDisks(int, int, int, int);
 void printIt(int , int , int );
@@ -10,12 +11,16 @@ int main() {
     const int TOPEG = 3;
     const int TEMPPEG = 2;
     const int NUMDISKS = 3;
-    for (auto numdisks: {3,5,6}) {
+    for (auto numdisks: {3, 5, 10, 15, 20, 25, 30, 31, 32, 33}) {
       cout << "Numdisks: " << numdisks << endl;
       moveDisks(numdisks, FROMPEG, TOPEG, TEMPPEG);
       cout << "Moved " << numdisks << " pegs"
            << " from peg " << FROMPEG
            << " to peg " << TOPEG << endl;
+      auto end = chrono::steady_clock::now();
+      auto diff = end - start;
+      cout << chrono::duration<double, milli>(diff).count() << " ms" << endl;
+
     }
 }
 
